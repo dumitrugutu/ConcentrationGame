@@ -18,9 +18,12 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBOutlet var cardButtons: [UIButton]!
+    
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
-        flipCard(withEmoji: "👻", on: sender)
+        let cardNumber = cardButtons.index(of: sender)
+        print("cardNumber: \(String(describing: cardNumber))")
     }
     
     func flipCard(withEmoji emoji: String, on button: UIButton ) {
