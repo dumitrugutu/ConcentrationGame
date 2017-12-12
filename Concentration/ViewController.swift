@@ -13,8 +13,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var flipCountLabel: UILabel!
     @IBOutlet var cardButtons: [UIButton]!
     
-    var emojiChoices = ["🎃", "👻", "🎃", "👻"]
+    var game = Concentration()
     
+    var emojiChoices = ["🎃", "👻", "🎃", "👻"]
     
     var flipCount = 0 { didSet { flipCountLabel.text = "Flips: \(flipCount)" } }
 
