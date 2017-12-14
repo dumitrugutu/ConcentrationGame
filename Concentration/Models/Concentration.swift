@@ -41,10 +41,20 @@ class Concentration {
             let card = Card()
             cards += [card, card]
         }
-        // TODO: Shuffle the cards
+        shuffleCards()
+    }
+    
+    private func shuffleCards() {
+        var shuffled = [Card]()
+        
+        for _ in 0..<cards.count {
+            let randomCardIndex = cards.count.arc4random
+            shuffled.append(cards[randomCardIndex])
+            cards.remove(at: randomCardIndex)
+        }
+        cards = shuffled
     }
 }
-
 
 extension Collection {
     var oneAndOnly: Element? {
