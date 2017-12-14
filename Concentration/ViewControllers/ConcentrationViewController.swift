@@ -19,6 +19,7 @@ class ConcentrationViewController: UIViewController {
     
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     private var numberOfMatchedCars = 0
+    private var emojiChoices = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,15 +70,17 @@ class ConcentrationViewController: UIViewController {
     }
     
     private func updateViewFromModel() {
-        for index in cardButtons.indices {
-            let button = cardButtons[index]
-            let card = game.cards[index]
-            if card.isFaceUp {
-                button.setTitle(emoji(for: card), for: .normal)
-                button.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-            } else {
-                button.setTitle("", for: .normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) : #colorLiteral(red: 0.01568627451, green: 0.662745098, blue: 0.9215686275, alpha: 1)
+        if cardButtons != nil {
+            for index in cardButtons.indices {
+                let button = cardButtons[index]
+                let card = game.cards[index]
+                if card.isFaceUp {
+                    button.setTitle(emoji(for: card), for: .normal)
+                    button.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+                } else {
+                    button.setTitle("", for: .normal)
+                    button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) : #colorLiteral(red: 0.01568627451, green: 0.662745098, blue: 0.9215686275, alpha: 1)
+                }
             }
         }
     }
@@ -98,9 +101,6 @@ class ConcentrationViewController: UIViewController {
             updateViewFromModel()
         }
     }
-    
-//    private var emojiChoices = ["🦇", "😱", "😈", "🤡", "🐶", "👀", "👻", "🎃", "👾"]
-    private var emojiChoices = "🦇😱😈🤡🐶👀👻🎃👾"
     
     private var emoji = [Card:String]()
     
