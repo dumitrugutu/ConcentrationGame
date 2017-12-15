@@ -8,14 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ConcentrationViewController: UIViewController {
     
-    @IBOutlet private weak var flipCountLabel: UILabel!
+    @IBOutlet private weak var flipCountLabel: UILabel! {
+        didSet { updateFlipCount() }
+    }
+    
     @IBOutlet private var cardButtons: [UIButton]!
     @IBOutlet weak var restartGameButton: UIButton!
     
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     private var numberOfMatchedCars = 0
+    private var emojiChoices = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +32,18 @@ class ViewController: UIViewController {
         return (cardButtons.count + 1) / 2
     }
     
-    private(set) var flipCount = 0 {
-        didSet {
-            flipCountLabel.text = "Flips: \(flipCount)"
-        }
+    private(set) var flipCount = 0 { didSet { updateFlipCount() } }
+    
+    func updateFlipCount() {
+        let attributes: [NSAttributedStringKey:Any] = [
+            .strokeWidth : 5.0,
+            .strokeColor : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        ]
+        let attributedString = NSAttributedString(
+            string: "Flips: \(flipCount)",
+            attributes: attributes
+        )
+        flipCountLabel.attributedText = attributedString
     }
 
     @IBAction private func touchCard(_ sender: UIButton) {
@@ -58,15 +70,17 @@ class ViewController: UIViewController {
     }
     
     private func updateViewFromModel() {
-        for index in cardButtons.indices {
-            let button = cardButtons[index]
-            let card = game.cards[index]
-            if card.isFaceUp {
-                button.setTitle(emoji(for: card), for: .normal)
-                button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            } else {
-                button.setTitle("", for: .normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+        if cardButtons != nil {
+            for index in cardButtons.indices {
+                let button = cardButtons[index]
+                let card = game.cards[index]
+                if card.isFaceUp {
+                    button.setTitle(emoji(for: card), for: .normal)
+                    button.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+                } else {
+                    button.setTitle("", for: .normal)
+                    button.backgroundColor = card.isMatched ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) : #colorLiteral(red: 0.01568627451, green: 0.662745098, blue: 0.9215686275, alpha: 1)
+                }
             }
         }
     }
@@ -80,8 +94,13 @@ class ViewController: UIViewController {
         }
     }
     
-//    private var emojiChoices = ["🦇", "😱", "😈", "🤡", "🐶", "👀", "👻", "🎃", "👾"]
-    private var emojiChoices = "🦇😱😈🤡🐶👀👻🎃👾"
+    var theme: String? {
+        didSet {
+            emojiChoices = theme ?? ""
+            emoji = [:]
+            updateViewFromModel()
+        }
+    }
     
     private var emoji = [Card:String]()
     
