@@ -21,6 +21,7 @@ class ConcentrationThemeSelectorViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowTheme" {
             if let themeName = (sender as? UIButton)?.currentTitle, let cvc = segue.destination as? ConcentrationViewController {
+                cvc.themeName = themeName
                 cvc.theme = themes[themeName]
             }
         }

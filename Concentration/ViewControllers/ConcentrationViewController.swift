@@ -21,10 +21,15 @@ class ConcentrationViewController: UIViewController {
     private var numberOfMatchedCars = 0
     private var emojiChoices = ""
     
+    var themeName: String? {
+        didSet {
+            navigationItem.title = themeName ?? ""
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        restartGameButton.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {
