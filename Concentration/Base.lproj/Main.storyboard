@@ -70,11 +70,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFm-ug-yG3">
-                                <rect key="frame" x="148.33333333333334" y="748" width="78.333333333333343" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaP-Mc-9wY">
                                 <rect key="frame" x="107" y="579" width="161" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -323,6 +318,11 @@
                                     <constraint firstItem="e38-FQ-Bzp" firstAttribute="width" secondItem="EVQ-bw-yDG" secondAttribute="width" id="ntu-CX-zKA"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFm-ug-yG3">
+                                <rect key="frame" x="148.33333333333334" y="748" width="78.333333333333343" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -330,10 +330,36 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="OFm-ug-yG3" secondAttribute="bottom" id="AVU-Qe-ne5"/>
                             <constraint firstItem="3jV-65-U4U" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="KeW-d1-pzL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3jV-65-U4U" secondAttribute="trailing" constant="8" id="OY7-k4-dPr"/>
+                            <constraint firstItem="OFm-ug-yG3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="10.333333333333258" id="cTO-JN-RXR">
+                                <variation key="heightClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="OFm-ug-yG3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="emA-xv-x6N"/>
+                            <constraint firstItem="OFm-ug-yG3" firstAttribute="leading" secondItem="3jV-65-U4U" secondAttribute="trailing" constant="8" id="il3-ji-tzG"/>
                             <constraint firstItem="3jV-65-U4U" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="kHd-7c-UKh"/>
+                            <constraint firstItem="OFm-ug-yG3" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="nH5-PT-eN2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3jV-65-U4U" secondAttribute="bottom" constant="8" id="yJv-9l-aOQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="yJv-9l-aOQ"/>
+                                <exclude reference="cTO-JN-RXR"/>
+                                <exclude reference="il3-ji-tzG"/>
+                                <exclude reference="nH5-PT-eN2"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="AVU-Qe-ne5"/>
+                                <exclude reference="OY7-k4-dPr"/>
+                                <include reference="yJv-9l-aOQ"/>
+                                <exclude reference="1Rw-2F-XFS"/>
+                                <include reference="cTO-JN-RXR"/>
+                                <exclude reference="emA-xv-x6N"/>
+                                <include reference="il3-ji-tzG"/>
+                                <include reference="nH5-PT-eN2"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="OFm-ug-yG3" id="ZWg-TF-RNL"/>
